@@ -1,6 +1,6 @@
 const url = `${process.env.REACT_APP_API_URL}/images`;
 
-async function findAll() {
+async function all() {
   try {
     const response = await fetch(url);
     const images = await response.json();
@@ -12,5 +12,5 @@ async function findAll() {
 }
 
 export default {
-  findAll,
+  all,
 };

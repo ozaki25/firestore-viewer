@@ -12,7 +12,7 @@ function useMessages() {
 
   const fetchMessages = async () => {
     setState({ ...state, loading: true });
-    const { messages, error } = await messagesApi.findAll();
+    const { messages, error } = await messagesApi.all();
     setState({ messages, loading: false, error });
   };
 
