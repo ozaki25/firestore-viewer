@@ -16,11 +16,17 @@ function useMessages() {
     setState({ messages, loading: false, error });
   };
 
+  const destoryMessage = async id => {
+    setState({ ...state, loading: true });
+    await messagesApi.destory(id);
+    await fetchMessages();
+  };
+
   useEffect(() => {
     fetchMessages();
   }, []);
 
-  return { ...state, refetch: fetchMessages };
+  return { ...state, refetch: fetchMessages, destory: destoryMessage };
 }
 
 export default useMessages;
