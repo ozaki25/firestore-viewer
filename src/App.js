@@ -16,14 +16,12 @@ function App() {
     <>
       <>
         {messages.length &&
-          messages.map(message => (
-            <p key={message.timestamp._nanoseconds}>{message.content}</p>
-          ))}
+          messages.map(message => <p key={message.id}>{message.content}</p>)}
       </>
       <>
         {images.length &&
           images.map(image => (
-            <div key={image.timestamp._nanoseconds}>
+            <div key={image.id}>
               <Image src={image.url} alt={image.cap} />
               <p>{image.caption}</p>
               {image.comment && <p>{image.comment}</p>}
