@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import imagesApi from '../api/imagesapi';
+import imagesApi from '../api/imagesApi';
 
 const initialState = {
   images: [],
