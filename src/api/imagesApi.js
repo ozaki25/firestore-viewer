@@ -11,6 +11,16 @@ async function all() {
   }
 }
 
+async function destory(id) {
+  try {
+    await fetch(`${url}/${id}`, { method: 'DELETE' });
+  } catch (e) {
+    console.log(e);
+    return { error: e.stack };
+  }
+}
+
 export default {
   all,
+  destory,
 };
