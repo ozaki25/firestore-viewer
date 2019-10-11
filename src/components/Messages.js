@@ -1,19 +1,22 @@
 import React from 'react';
 import useMessages from '../hooks/useMessages';
-import { Link } from '@chakra-ui/core';
+import { Link, List, ListItem, ListIcon } from '@chakra-ui/core';
 
 function Message({ message, destory }) {
   const onClickDestory = e => {
     e.preventDefault();
-    destory(message.id);
+    if (window.confirm('削除しますか？')) destory(message.id);
   };
   return (
-    <p>
-      {message.content}
-      <Link href="#" onClick={onClickDestory}>
-        削除
-      </Link>
-    </p>
+    <List mb={2}>
+      <ListItem>
+        <ListIcon icon="chevron-right" color="orange.500" />
+        {message.content}
+        <Link href="#" onClick={onClickDestory} ml={2}>
+          削除
+        </Link>
+      </ListItem>
+    </List>
   );
 }
 

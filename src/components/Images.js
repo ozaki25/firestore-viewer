@@ -10,7 +10,7 @@ const StyledImage = styled.img`
 function Image({ image, destory }) {
   const onClickDestory = e => {
     e.preventDefault();
-    destory(image.id);
+    if (window.confirm('削除しますか？')) destory(image.id);
   };
 
   return (
