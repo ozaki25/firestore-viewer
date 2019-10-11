@@ -8,12 +8,13 @@ function Message({ message, destory }) {
     if (window.confirm('削除しますか？')) destory(message.id);
   };
   return (
-    <List mb={2}>
-      <ListItem>
+    <List>
+      <ListItem p={1}>
         <ListIcon icon="chevron-right" color="orange.500" />
         {message.content}
         <Button
           ml={2}
+          size="sm"
           variant="link"
           variantColor="orange"
           onClick={onClickDestory}
