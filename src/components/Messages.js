@@ -1,6 +1,6 @@
 import React from 'react';
 import useMessages from '../hooks/useMessages';
-import { Link, List, ListItem, ListIcon } from '@chakra-ui/core';
+import { Button, List, ListItem, ListIcon } from '@chakra-ui/core';
 
 function Message({ message, destory }) {
   const onClickDestory = e => {
@@ -12,9 +12,14 @@ function Message({ message, destory }) {
       <ListItem>
         <ListIcon icon="chevron-right" color="orange.500" />
         {message.content}
-        <Link href="#" onClick={onClickDestory} color="orange.500" ml={2}>
+        <Button
+          ml={2}
+          variant="link"
+          variantColor="orange"
+          onClick={onClickDestory}
+        >
           削除
-        </Link>
+        </Button>
       </ListItem>
     </List>
   );
