@@ -1,27 +1,33 @@
 import React from 'react';
-import styled from '@emotion/styled';
-import { Link } from '@chakra-ui/core';
+import { Button, Box, Image, Stack, Text } from '@chakra-ui/core';
 import useImages from '../hooks/useImages';
 
-const StyledImage = styled.img`
-  max-height: 100px;
-`;
-
-function Image({ image, destory }) {
+function ImageItem({ image, destory }) {
   const onClickDestory = e => {
     e.preventDefault();
     if (window.confirm('削除しますか？')) destory(image.id);
   };
 
   return (
-    <div>
-      <StyledImage src={image.url} alt={image.cap} />
-      <Link href="#" onClick={onClickDestory}>
-        削除
-      </Link>
-      <p>{image.caption}</p>
-      {image.comment && <p>{image.comment}</p>}
-    </div>
+    <Stack align="center">
+      <Box maxW="sm" borderWidth="1px" rounded="lg" mt={2}>
+        <Image src={image.url} alt={image.caption} />
+        <Box p="3">
+          <Text color="gray.700">{image.caption}</Text>
+          {image.comment && <p>{image.comment}</p>}
+          <Button
+            width="100%"
+            size="sm"
+            mt={2}
+            variant="outline"
+            variantColor="orange"
+            onClick={onClickDestory}
+          >
+            削除
+          </Button>
+        </Box>
+      </Box>
+    </Stack>
   );
 }
 
@@ -30,7 +36,7 @@ function Images() {
 
   return images.length
     ? images.map(image => (
-        <Image key={image.id} image={image} destory={destory} />
+        <ImageItem key={image.id} image={image} destory={destory} />
       ))
     : null;
 }
