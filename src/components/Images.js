@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Box, Image, Stack, Text } from '@chakra-ui/core';
+import { Button, Box, Link, Image, Stack, Text } from '@chakra-ui/core';
 import useImages from '../hooks/useImages';
 
 function ImageItem({ image, destory }) {
@@ -11,7 +11,9 @@ function ImageItem({ image, destory }) {
   return (
     <Stack align="center">
       <Box maxW="sm" borderWidth="1px" rounded="lg" mt={2}>
-        <Image src={image.url} alt={image.caption} />
+        <Link href={image.url} isExternal>
+          <Image src={image.url} alt={image.caption} />
+        </Link>
         <Box p="3">
           <Text color="gray.700">{image.caption}</Text>
           {image.comment && <p>{image.comment}</p>}
