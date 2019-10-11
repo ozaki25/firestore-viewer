@@ -10,20 +10,20 @@ const initialState = {
 function useMessages() {
   const [state, setState] = useState(initialState);
 
-  const fetchMessages = async () => {
+  const fetchMessages = async ({ startAfterId }) => {
     setState({ ...state, loading: true });
-    const { messages, error } = await messagesApi.all();
+    const { messages, error } = await messagesApi.all({ startAfterId });
     setState({ messages, loading: false, error });
   };
 
   const destoryMessage = async id => {
     setState({ ...state, loading: true });
     await messagesApi.destory(id);
-    await fetchMessages();
+    await fetchMessages({});
   };
 
   useEffect(() => {
-    fetchMessages();
+    fetchMessages({});
   }, []);
 
   return { ...state, refetch: fetchMessages, destory: destoryMessage };

@@ -36,7 +36,7 @@ function ImageItem({ image, destory }) {
 function Images() {
   const { images, loading, destory } = useImages();
 
-  return images.length
+  return images && images.length
     ? images.map(image => (
         <ImageItem key={image.id} image={image} destory={destory} />
       ))
