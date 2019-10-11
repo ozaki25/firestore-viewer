@@ -8,7 +8,7 @@ function Message({ message, destory }) {
     destory(message.id);
   };
   return (
-    <p key={message.id}>
+    <p>
       {message.content}
       <Link href="#" onClick={onClickDestory}>
         削除
@@ -21,7 +21,9 @@ function Messages() {
   const { messages, loading, destory } = useMessages();
 
   return messages.length
-    ? messages.map(message => <Message message={message} destory={destory} />)
+    ? messages.map(message => (
+        <Message key={message.id} message={message} destory={destory} />
+      ))
     : null;
 }
 

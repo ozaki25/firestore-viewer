@@ -14,7 +14,7 @@ function Image({ image, destory }) {
   };
 
   return (
-    <div key={image.id}>
+    <div>
       <StyledImage src={image.url} alt={image.cap} />
       <Link href="#" onClick={onClickDestory}>
         削除
@@ -29,7 +29,9 @@ function Images() {
   const { images, loading, destory } = useImages();
 
   return images.length
-    ? images.map(image => <Image image={image} destory={destory} />)
+    ? images.map(image => (
+        <Image key={image.id} image={image} destory={destory} />
+      ))
     : null;
 }
 
