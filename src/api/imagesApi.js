@@ -1,5 +1,5 @@
 const url = `${process.env.REACT_APP_API_URL}/images`;
-const LIMIT = 10;
+const LIMIT = 5;
 const allProps = { startAfterId: null };
 
 async function all({ startAfterId } = allProps) {
