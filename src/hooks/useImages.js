@@ -10,20 +10,20 @@ const initialState = {
 function useImages() {
   const [state, setState] = useState(initialState);
 
-  const fetchImages = async () => {
+  const fetchImages = async ({ startAfterId }) => {
     setState({ ...state, loading: true });
-    const { images, error } = await imagesApi.all();
+    const { images, error } = await imagesApi.all({ startAfterId });
     setState({ images, loading: false, error });
   };
 
   const destoryImage = async id => {
     setState({ ...state, loading: true });
     await imagesApi.destory(id);
-    await fetchImages();
+    await fetchImages({});
   };
 
   useEffect(() => {
-    fetchImages();
+    fetchImages({});
   }, []);
 
   return { ...state, refetch: fetchImages, destory: destoryImage };

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { Button, Box, Link, Image, Stack, Text } from '@chakra-ui/core';
 import useImages from '../hooks/useImages';
+import Loading from './Loading';
 
 function ImageItem({ image, destory }) {
   const onClickDestory = e => {
@@ -34,13 +36,40 @@ function ImageItem({ image, destory }) {
 }
 
 function Images() {
-  const { images, loading, destory } = useImages();
+  const { images: newImages, destory, refetch } = useImages();
+  const [images, setImages] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
 
-  return images && images.length
-    ? images.map(image => (
+  const onNext = () => {
+    refetch({
+      startAfterId: images[images.length - 1].id,
+    });
+  };
+
+  useEffect(() => {
+    console.log({ newImages, images });
+    if (newImages.length) {
+      setHasMore(true);
+      setImages([...images, ...newImages]);
+    } else {
+      setHasMore(false);
+    }
+  }, [newImages]);
+
+  return images.length ? (
+    <InfiniteScroll
+      dataLength={images.length}
+      hasMore={hasMore}
+      next={onNext}
+      loader={<Loading />}
+    >
+      {images.map(image => (
         <ImageItem key={image.id} image={image} destory={destory} />
-      ))
-    : null;
+      ))}
+    </InfiniteScroll>
+  ) : (
+    <Loading />
+  );
 }
 
 export default Images;

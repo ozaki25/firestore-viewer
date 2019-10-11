@@ -1,8 +1,13 @@
 const url = `${process.env.REACT_APP_API_URL}/images`;
+const LIMIT = 10;
+const allProps = { startAfterId: null };
 
-async function all() {
+async function all({ startAfterId } = allProps) {
   try {
-    const response = await fetch(url);
+    console.log(`${url}?limit=${LIMIT}&startAfterId=${startAfterId}`);
+    const response = await fetch(
+      `${url}?limit=${LIMIT}&startAfterId=${startAfterId}`,
+    );
     const images = await response.json();
     return { images };
   } catch (e) {
