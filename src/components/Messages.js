@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import {
-  Button,
-  CircularProgress,
-  List,
-  ListItem,
-  ListIcon,
-  Stack,
-} from '@chakra-ui/core';
+import { Button, List, ListItem, ListIcon } from '@chakra-ui/core';
 import useMessages from '../hooks/useMessages';
+import Loading from './Loading';
 
 function Message({ message, destory }) {
   const onClickDestory = e => {
@@ -35,7 +29,7 @@ function Message({ message, destory }) {
 }
 
 function Messages() {
-  const { messages: newMessages, loading, destory, refetch } = useMessages();
+  const { messages: newMessages, destory, refetch } = useMessages();
   const [messages, setMessages] = useState([]);
   const [hasMore, setHasMore] = useState(true);
 
@@ -60,18 +54,14 @@ function Messages() {
       dataLength={messages.length}
       hasMore={hasMore}
       next={onNext}
-      loader={
-        <Stack align="center">
-          <CircularProgress color="orange" isIndeterminate />
-        </Stack>
-      }
+      loader={<Loading />}
     >
       {messages.length ? (
         messages.map(message => (
           <Message key={message.id} message={message} destory={destory} />
         ))
       ) : (
-        <div />
+        <Loading />
       )}
     </InfiniteScroll>
   );
