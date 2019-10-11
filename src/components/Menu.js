@@ -18,7 +18,7 @@ const MENU_LIST = [
 function Menu() {
   return (
     <Stack mr="auto" ml="auto" width={['100%', '80%', '70%', '60%']}>
-      <Tabs>
+      <Tabs isFitted>
         <TabList>
           {MENU_LIST.map(({ id, name }) => (
             <Tab key={id}>{name}</Tab>
