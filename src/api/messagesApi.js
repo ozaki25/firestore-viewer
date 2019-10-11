@@ -1,5 +1,5 @@
 const url = `${process.env.REACT_APP_API_URL}/messages`;
-const LIMIT = 50;
+const LIMIT = 40;
 const allProps = { startAfterId: null };
 
 async function all({ startAfterId } = allProps) {
