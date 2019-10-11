@@ -47,7 +47,7 @@ function Messages() {
 
   useEffect(() => {
     console.log({ newMessages, messages });
-    if (newMessages) {
+    if (newMessages.length) {
       setHasMore(true);
       setMessages([...messages, ...newMessages]);
     } else {
