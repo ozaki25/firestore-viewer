@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Button, List, ListItem, ListIcon } from '@chakra-ui/core';
+import {
+  Button,
+  CircularProgress,
+  List,
+  ListItem,
+  ListIcon,
+  Stack,
+} from '@chakra-ui/core';
 import useMessages from '../hooks/useMessages';
 
 function Message({ message, destory }) {
@@ -53,7 +60,11 @@ function Messages() {
       dataLength={messages.length}
       hasMore={hasMore}
       next={onNext}
-      loader={<p>...loading</p>}
+      loader={
+        <Stack align="center">
+          <CircularProgress color="orange" isIndeterminate />
+        </Stack>
+      }
     >
       {messages.length ? (
         messages.map(message => (
