@@ -12,7 +12,7 @@ function Message({ message, destory }) {
       <ListItem>
         <ListIcon icon="chevron-right" color="orange.500" />
         {message.content}
-        <Link href="#" onClick={onClickDestory} ml={2}>
+        <Link href="#" onClick={onClickDestory} color="orange.500" ml={2}>
           削除
         </Link>
       </ListItem>
