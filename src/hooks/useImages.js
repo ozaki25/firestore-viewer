@@ -19,7 +19,7 @@ function useImages() {
   const destoryImage = async id => {
     setState({ ...state, loading: true });
     await imagesApi.destory(id);
-    await fetchImages({});
+    setState({ ...state, loading: false });
   };
 
   useEffect(() => {

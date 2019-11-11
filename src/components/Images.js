@@ -46,6 +46,11 @@ function Images() {
     });
   };
 
+  const onClickDestory = async id => {
+    await destory(id);
+    setImages(images.filter(i => i.id !== id));
+  };
+
   useEffect(() => {
     console.log({ newImages, images });
     if (newImages.length) {
@@ -64,7 +69,7 @@ function Images() {
       loader={<Loading />}
     >
       {images.map(image => (
-        <ImageItem key={image.id} image={image} destory={destory} />
+        <ImageItem key={image.id} image={image} destory={onClickDestory} />
       ))}
     </InfiniteScroll>
   ) : (
