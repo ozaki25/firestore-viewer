@@ -39,6 +39,11 @@ function Messages() {
     });
   };
 
+  const onClickDestory = async id => {
+    await destory(id);
+    setMessages(messages.filter(m => m.id !== id));
+  };
+
   useEffect(() => {
     console.log({ newMessages, messages });
     if (newMessages.length) {
@@ -58,7 +63,11 @@ function Messages() {
     >
       {messages.length ? (
         messages.map(message => (
-          <Message key={message.id} message={message} destory={destory} />
+          <Message
+            key={message.id}
+            message={message}
+            destory={onClickDestory}
+          />
         ))
       ) : (
         <Loading />

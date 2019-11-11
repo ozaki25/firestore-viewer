@@ -19,7 +19,7 @@ function useMessages() {
   const destoryMessage = async id => {
     setState({ ...state, loading: true });
     await messagesApi.destory(id);
-    await fetchMessages({});
+    setState({ ...state, loading: false });
   };
 
   useEffect(() => {
