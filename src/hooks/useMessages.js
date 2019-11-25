@@ -10,9 +10,9 @@ const initialState = {
 function useMessages() {
   const [state, setState] = useState(initialState);
 
-  const fetchMessages = async ({ startAfterId }) => {
+  const fetchMessages = async () => {
     setState({ ...state, loading: true });
-    const { messages, error } = await messagesApi.all({ startAfterId });
+    const { messages, error } = await messagesApi.all();
     setState({ messages, loading: false, error });
   };
 

@@ -1,13 +1,9 @@
 const url = `${process.env.REACT_APP_API_URL}/messages`;
-const LIMIT = 40;
-const allProps = { startAfterId: null };
+// const LIMIT = 40;
 
-async function all({ startAfterId } = allProps) {
+async function all() {
   try {
-    console.log(`${url}?limit=${LIMIT}&startAfterId=${startAfterId}`);
-    const response = await fetch(
-      `${url}?limit=${LIMIT}&startAfterId=${startAfterId}`,
-    );
+    const response = await fetch(url);
     const messages = await response.json();
     return { messages };
   } catch (e) {

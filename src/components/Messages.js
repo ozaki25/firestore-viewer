@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import React from 'react';
 import { Button, List, ListItem, ListIcon } from '@chakra-ui/core';
 import useMessages from '../hooks/useMessages';
 import Loading from './Loading';
@@ -29,38 +28,18 @@ function Message({ message, destory }) {
 }
 
 function Messages() {
-  const { messages: newMessages, destory, refetch } = useMessages();
-  const [messages, setMessages] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
-
-  const onNext = () => {
-    refetch({
-      startAfterId: messages[messages.length - 1].id,
-    });
-  };
+  const { messages, destory, refetch } = useMessages();
 
   const onClickDestory = async id => {
     await destory(id);
-    setMessages(messages.filter(m => m.id !== id));
+    await refetch();
   };
 
-  useEffect(() => {
-    console.log({ newMessages, messages });
-    if (newMessages.length) {
-      setHasMore(true);
-      setMessages([...messages, ...newMessages]);
-    } else {
-      setHasMore(false);
-    }
-  }, [newMessages]);
-
   return (
-    <InfiniteScroll
-      dataLength={messages.length}
-      hasMore={hasMore}
-      next={onNext}
-      loader={<Loading />}
-    >
+    <>
+      <Button size="sm" variant="link" onClick={refetch}>
+        更新
+      </Button>
       {messages.length ? (
         messages.map(message => (
           <Message
@@ -72,7 +51,7 @@ function Messages() {
       ) : (
         <Loading />
       )}
-    </InfiniteScroll>
+    </>
   );
 }
 
