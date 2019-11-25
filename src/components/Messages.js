@@ -37,7 +37,7 @@ function Messages() {
 
   return (
     <>
-      <Button size="sm" variant="link" onClick={refetch}>
+      <Button mt={2} size="sm" variant="outline" width="100%" onClick={refetch}>
         更新
       </Button>
       {messages.length ? (
