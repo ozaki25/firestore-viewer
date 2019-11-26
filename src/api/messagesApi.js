@@ -3,7 +3,7 @@ const url = `${process.env.REACT_APP_API_URL}/messages`;
 
 async function all() {
   try {
-    const response = await fetch(`${url}?limit=50`);
+    const response = await fetch(`${url}?limit=60&startAfterId=${null}`);
     const messages = await response.json();
     return { messages };
   } catch (e) {
